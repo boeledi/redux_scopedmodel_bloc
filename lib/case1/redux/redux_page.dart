@@ -44,7 +44,7 @@ class ReduxPage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text('You are not authenticated.'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to authenticate...'),
           onPressed: () {
             viewModel.dispatchAction(LoginAction());
@@ -59,10 +59,10 @@ class ReduxPage extends StatelessWidget {
       children: <Widget>[
         Text('Your first name: ${viewModel.state.userFirstName}'),
         Text('Your last name: ${viewModel.state.userLastName}'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to logout...'),
-          onPressed: (){
-              viewModel.dispatchAction(LogoutAction());
+          onPressed: () {
+            viewModel.dispatchAction(LogoutAction());
           },
         ),
       ],

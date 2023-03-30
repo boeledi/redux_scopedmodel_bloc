@@ -26,7 +26,6 @@ class _ReduxPageState extends State<ReduxPage> {
   @override
   void dispose() {
     _widgets.clear();
-    _widgets = null;
     super.dispose();
   }
 
@@ -37,9 +36,9 @@ class _ReduxPageState extends State<ReduxPage> {
         title: Text('REDUX version'),
         actions: <Widget>[
           StoreConnector<ApplicationState, Store<ApplicationState>>(
-            converter: (Store<ApplicationState> store) => store, 
+            converter: (Store<ApplicationState> store) => store,
             builder: (BuildContext context, Store<ApplicationState> store) {
-              return RaisedButton(
+              return ElevatedButton(
                 child: Text('Add...'),
                 onPressed: () {
                   _widgets.add(ReduxWidget(panelIndex: _widgets.length));

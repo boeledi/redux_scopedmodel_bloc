@@ -9,25 +9,25 @@ class Case1BlocApplication extends StatefulWidget {
 }
 
 class _Case1BlocApplicationState extends State<Case1BlocApplication> {
-
-  ApplicationStateBloc applicationBloc;
+  late ApplicationStateBloc applicationBloc;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     applicationBloc = ApplicationStateBloc();
   }
 
   @override
-  void dispose(){
-    applicationBloc?.dispose();
+  void dispose() {
+    applicationBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ApplicationStateBloc>(
-      bloc: applicationBloc,
+      blocBuilder: () => applicationBloc,
+      blocDispose: (_) {},
       child: MaterialApp(
         title: 'ReduxScopedModelBloc_Comparison',
         home: BlocPage(),

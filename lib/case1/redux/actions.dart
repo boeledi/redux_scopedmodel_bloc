@@ -3,13 +3,13 @@ class LoginAction {}
 class LogoutAction {}
 
 class AuthenticatedAction {
+  AuthenticatedAction({
+    required this.firstName,
+    required this.lastName,
+  });
+
   final String firstName;
   final String lastName;
-
-  AuthenticatedAction({
-    this.firstName,
-    this.lastName,
-  }); 
 }
 
 class ServerCommunicationAction {}

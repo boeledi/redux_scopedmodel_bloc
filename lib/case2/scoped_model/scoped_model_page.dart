@@ -10,15 +10,14 @@ class _ScopedModelPageState extends State<ScopedModelPage> {
   List<ScopedModelWidget> _widgets = <ScopedModelWidget>[];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _widgets = <ScopedModelWidget>[ScopedModelWidget()];
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _widgets.clear();
-    _widgets = null;
     super.dispose();
   }
 
@@ -28,11 +27,11 @@ class _ScopedModelPageState extends State<ScopedModelPage> {
       appBar: AppBar(
         title: Text('Scoped Model version'),
         actions: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text('Add...'),
-            onPressed: (){
+            onPressed: () {
               _widgets.add(ScopedModelWidget());
-              setState((){});
+              setState(() {});
             },
           ),
         ],
@@ -40,8 +39,9 @@ class _ScopedModelPageState extends State<ScopedModelPage> {
       body: Container(
         child: GridView.builder(
           itemCount: _widgets.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (BuildContext context, int index){
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (BuildContext context, int index) {
             return _widgets[index];
           },
         ),

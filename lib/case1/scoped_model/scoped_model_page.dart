@@ -11,7 +11,7 @@ class ScopedModelPage extends StatelessWidget {
         title: Text('Scoped Model Home Page'),
       ),
       body: ScopedModelDescendant<ApplicationModel>(
-        builder: (BuildContext context, Widget child, ApplicationModel model){
+        builder: (BuildContext context, Widget? child, ApplicationModel model) {
           if (model.isWorking == true) {
             return _buildWorking();
           }
@@ -35,7 +35,7 @@ class ScopedModelPage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text('You are not authenticated.'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to authenticate...'),
           onPressed: () {
             model.doAuthenticate();
@@ -50,10 +50,10 @@ class ScopedModelPage extends StatelessWidget {
       children: <Widget>[
         Text('Your first name: ${model.firstName}'),
         Text('Your last name: ${model.lastName}'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to logout...'),
-          onPressed: (){
-              model.logout();
+          onPressed: () {
+            model.logout();
           },
         ),
       ],

@@ -6,14 +6,14 @@ import 'package:scoped_model/scoped_model.dart';
 const int _kMaxSamples = 15;
 
 class StatsModel extends Model {
-  Timer _timer;
+  Timer? _timer;
   List<double> stats = <double>[];
   bool isTimerOn = false;
 
   ///
   /// Starts the timer
   ///
-  void start([bool notify = true]){
+  void start([bool notify = true]) {
     _timer = Timer(Duration(seconds: 1), _onTick);
     isTimerOn = true;
 
@@ -25,8 +25,8 @@ class StatsModel extends Model {
   ///
   /// Stops the timer
   ///
-  void stop(){
-    if (_timer != null){
+  void stop() {
+    if (_timer != null) {
       isTimerOn = false;
       _timer?.cancel();
       _timer = null;
@@ -58,7 +58,7 @@ class StatsModel extends Model {
   ///
   /// In case we should free up some resource
   ///
-  void dispose(){
+  void dispose() {
     stop();
-  } 
+  }
 }

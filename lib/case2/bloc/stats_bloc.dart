@@ -7,24 +7,26 @@ import 'package:rxdart/subjects.dart';
 const int _kMaxSamples = 15;
 
 class StatsBloc implements BlocBase {
-  Timer _timer;
+  Timer? _timer;
 
   ///
   /// Tells whether the timer is on/off
   ///
-  BehaviorSubject<bool> _timerActivityController = BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<bool> _timerActivityController =
+      BehaviorSubject<bool>.seeded(false);
   Stream<bool> get timerActivityOut => _timerActivityController;
 
   ///
   /// Provides the stats
   ///
-  BehaviorSubject<List<double>> _statsController = BehaviorSubject<List<double>>.seeded([]);
+  BehaviorSubject<List<double>> _statsController =
+      BehaviorSubject<List<double>>.seeded([]);
   Stream<List<double>> get statsOut => _statsController;
 
   ///
   /// Start the timer
   ///
-  void start([bool notify = true]){
+  void start([bool notify = true]) {
     _timer = Timer(Duration(seconds: 1), _onTick);
 
     if (notify == true) {
@@ -35,8 +37,8 @@ class StatsBloc implements BlocBase {
   ///
   /// Stops the timer
   ///
-  void stop(){
-    if (_timer != null){
+  void stop() {
+    if (_timer != null) {
       _timerActivityController.sink.add(false);
       _timer?.cancel();
       _timer = null;
@@ -53,8 +55,12 @@ class StatsBloc implements BlocBase {
     // Re-inject the new series of values
     _statsController.sink.add(
         // we simply take the last 5 values
-        (_statsController.value..add(newValue)).reversed.take(_kMaxSamples).toList().reversed.toList()
-    );
+        (_statsController.value..add(newValue))
+            .reversed
+            .take(_kMaxSamples)
+            .toList()
+            .reversed
+            .toList());
 
     // Rearm the timer (if not stopped meanwhile)
     if (_timer != null) {
@@ -68,5 +74,4 @@ class StatsBloc implements BlocBase {
     _timerActivityController?.close();
     _statsController?.close();
   }
-
 }

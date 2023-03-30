@@ -9,7 +9,7 @@ class ScopedModelWidget extends StatefulWidget {
 }
 
 class _ScopedModelWidgetState extends State<ScopedModelWidget> {
-  StatsModel _model;
+  late StatsModel _model;
 
   @override
   void initState() {
@@ -19,7 +19,7 @@ class _ScopedModelWidgetState extends State<ScopedModelWidget> {
 
   @override
   void dispose() {
-    _model?.dispose();
+    _model.dispose();
     super.dispose();
   }
 
@@ -41,7 +41,7 @@ class _ScopedModelWidgetState extends State<ScopedModelWidget> {
               children: <Widget>[
                 Container(
                   child: ScopedModelDescendant<StatsModel>(builder:
-                      (BuildContext context, Widget child, StatsModel model) {
+                      (BuildContext context, Widget? child, StatsModel model) {
                     List<double> data = model.stats;
 
                     return Padding(
@@ -59,10 +59,11 @@ class _ScopedModelWidgetState extends State<ScopedModelWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ScopedModelDescendant<StatsModel>(builder:
-                        (BuildContext context, Widget child, StatsModel model) {
+                        (BuildContext context, Widget? child,
+                            StatsModel model) {
                       bool isActive = model.isTimerOn;
 
-                      return RaisedButton(
+                      return ElevatedButton(
                         child: Text(isActive ? 'Stop' : 'Start'),
                         onPressed: () =>
                             isActive ? model.stop() : model.start(),

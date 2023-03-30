@@ -12,10 +12,10 @@ class Case2ReduxApplication extends StatefulWidget {
 }
 
 class _Case2ReduxApplicationState extends State<Case2ReduxApplication> {
-  Store<ApplicationState> applicationStore;
+  late Store<ApplicationState> applicationStore;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     applicationStore = Store<ApplicationState>(
       case2Reducer,
@@ -28,8 +28,8 @@ class _Case2ReduxApplicationState extends State<Case2ReduxApplication> {
   }
 
   @override
-  void dispose(){
-    applicationStore?.teardown();
+  void dispose() {
+    applicationStore.teardown();
     super.dispose();
   }
 

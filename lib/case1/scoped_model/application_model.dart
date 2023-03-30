@@ -5,19 +5,20 @@ class ApplicationModel extends Model {
   String firstName = "";
   String lastName = "";
   bool isWorking = false;
-  AuthenticationState authenticationState = AuthenticationState.notAuthenticated;
-  
+  AuthenticationState authenticationState =
+      AuthenticationState.notAuthenticated;
+
   ///
   /// In case we should free up some resource
   ///
-  void dispose(){
+  void dispose() {
     // add disposal code here
   }
 
   ///
   /// Used to know whether we are communicating with the server
   ///
-  void setWorkingMode(bool working){
+  void setWorkingMode(bool working) {
     isWorking = working;
     notifyListeners();
   }
@@ -25,7 +26,7 @@ class ApplicationModel extends Model {
   ///
   /// Used to reset the authentication data
   ///
-  void logout(){
+  void logout() {
     firstName = "";
     lastName = "";
     authenticationState = AuthenticationState.notAuthenticated;
@@ -35,7 +36,7 @@ class ApplicationModel extends Model {
   ///
   /// Used to save the authentication data
   ///
-  void login({String firstName, String lastName}){
+  void login({required String firstName, required String lastName}) {
     this.firstName = firstName;
     this.lastName = lastName;
     authenticationState = AuthenticationState.authenticated;
@@ -51,7 +52,7 @@ class ApplicationModel extends Model {
     // Notify that we are performing the authentication
     //
     setWorkingMode(true);
-    
+
     //
     // Simulate delayed authentication
     //

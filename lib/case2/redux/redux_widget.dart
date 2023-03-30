@@ -8,9 +8,9 @@ import 'package:redux_scopedmodel_bloc/case2/redux/view_models.dart';
 
 class ReduxWidget extends StatelessWidget {
   ReduxWidget({
-    Key key,
-    @required this.panelIndex,
-  }) : super(key: key);
+    super.key,
+    required this.panelIndex,
+  });
 
   final int panelIndex;
 
@@ -68,13 +68,13 @@ class ReduxWidget extends StatelessWidget {
                     );
                   }, builder: (BuildContext context,
                           ReduxWidgetButtonViewModel model) {
-                    return RaisedButton(
+                    return ElevatedButton(
                       child: Text(model.isActive ? 'Stop' : 'Start'),
                       onPressed: () =>
                           model.dispatchAction(StartStopPanelAction(
-                            panelIndex: panelIndex,
-                            isStart: !model.isActive,
-                          )),
+                        panelIndex: panelIndex,
+                        isStart: !model.isActive,
+                      )),
                     );
                   }),
                 ),

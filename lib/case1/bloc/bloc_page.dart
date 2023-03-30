@@ -7,7 +7,7 @@ import 'package:redux_scopedmodel_bloc/common/bloc_provider.dart';
 class BlocPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ApplicationStateBloc bloc = BlocProvider.of<ApplicationStateBloc>(context);
+    ApplicationStateBloc bloc = BlocProvider.of<ApplicationStateBloc>(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -15,15 +15,16 @@ class BlocPage extends StatelessWidget {
       ),
       body: StreamBuilder<ApplicationModel>(
         stream: bloc.applicationModel,
-        builder: (BuildContext context, AsyncSnapshot<ApplicationModel> snapshot){
-          if (snapshot.data == null || snapshot.data.isWorking == true) {
+        builder:
+            (BuildContext context, AsyncSnapshot<ApplicationModel> snapshot) {
+          if (snapshot.data == null || snapshot.data!.isWorking == true) {
             return _buildWorking();
           }
-          if (snapshot.data.authenticationState ==
+          if (snapshot.data!.authenticationState ==
               AuthenticationState.notAuthenticated) {
-            return _buildNotAuthenticated(bloc, snapshot.data);
+            return _buildNotAuthenticated(bloc, snapshot.data!);
           }
-          return _buildAuthenticated(bloc, snapshot.data);
+          return _buildAuthenticated(bloc, snapshot.data!);
         },
       ),
     );
@@ -35,11 +36,12 @@ class BlocPage extends StatelessWidget {
     );
   }
 
-  Widget _buildNotAuthenticated(ApplicationStateBloc bloc, ApplicationModel model) {
+  Widget _buildNotAuthenticated(
+      ApplicationStateBloc bloc, ApplicationModel model) {
     return Column(
       children: <Widget>[
         Text('You are not authenticated.'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to authenticate...'),
           onPressed: () {
             bloc.doAuthenticate();
@@ -49,15 +51,16 @@ class BlocPage extends StatelessWidget {
     );
   }
 
-  Widget _buildAuthenticated(ApplicationStateBloc bloc, ApplicationModel model) {
+  Widget _buildAuthenticated(
+      ApplicationStateBloc bloc, ApplicationModel model) {
     return Column(
       children: <Widget>[
         Text('Your first name: ${model.firstName}'),
         Text('Your last name: ${model.lastName}'),
-        RaisedButton(
+        ElevatedButton(
           child: Text('Tap to logout...'),
-          onPressed: (){
-              bloc.logout();
+          onPressed: () {
+            bloc.logout();
           },
         ),
       ],

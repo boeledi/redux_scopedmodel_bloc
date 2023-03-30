@@ -5,22 +5,23 @@ import 'package:scoped_model/scoped_model.dart';
 
 class Case1ScopedModelApplication extends StatefulWidget {
   @override
-  _Case1ScopedModelApplicationState createState() => _Case1ScopedModelApplicationState();
+  _Case1ScopedModelApplicationState createState() =>
+      _Case1ScopedModelApplicationState();
 }
 
-class _Case1ScopedModelApplicationState extends State<Case1ScopedModelApplication> {
-
-  ApplicationModel applicationModel;
+class _Case1ScopedModelApplicationState
+    extends State<Case1ScopedModelApplication> {
+  late ApplicationModel applicationModel;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     applicationModel = ApplicationModel();
   }
 
   @override
-  void dispose(){
-    applicationModel?.dispose();
+  void dispose() {
+    applicationModel.dispose();
     super.dispose();
   }
 

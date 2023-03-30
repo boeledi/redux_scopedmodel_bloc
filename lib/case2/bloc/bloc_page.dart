@@ -10,15 +10,14 @@ class _BlocPageState extends State<BlocPage> {
   List<BlocWidget> _widgets = <BlocWidget>[];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _widgets = <BlocWidget>[BlocWidget()];
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _widgets.clear();
-    _widgets = null;
     super.dispose();
   }
 
@@ -28,11 +27,11 @@ class _BlocPageState extends State<BlocPage> {
       appBar: AppBar(
         title: Text('BLOC version'),
         actions: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text('Add...'),
-            onPressed: (){
+            onPressed: () {
               _widgets.add(BlocWidget());
-              setState((){});
+              setState(() {});
             },
           ),
         ],
@@ -40,8 +39,9 @@ class _BlocPageState extends State<BlocPage> {
       body: Container(
         child: GridView.builder(
           itemCount: _widgets.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (BuildContext context, int index){
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (BuildContext context, int index) {
             return _widgets[index];
           },
         ),

@@ -13,14 +13,15 @@ class Case1ReduxApplication extends StatefulWidget {
 }
 
 class _Case1ReduxApplicationState extends State<Case1ReduxApplication> {
-  Store<ApplicationState> applicationStore;
+  late Store<ApplicationState> applicationStore;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     applicationStore = Store<ApplicationState>(
       authenticationReducer,
-      initialState: ApplicationState(authenticationState: AuthenticationState.notAuthenticated),
+      initialState: ApplicationState(
+          authenticationState: AuthenticationState.notAuthenticated),
       middleware: <Middleware<ApplicationState>>[
         authenticateMiddleware,
         loggerMiddleware,
@@ -29,8 +30,8 @@ class _Case1ReduxApplicationState extends State<Case1ReduxApplication> {
   }
 
   @override
-  void dispose(){
-    applicationStore?.teardown();
+  void dispose() {
+    applicationStore.teardown();
     super.dispose();
   }
 

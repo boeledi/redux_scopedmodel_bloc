@@ -11,7 +11,7 @@ class ReduxWidgetButtonViewModel {
   final void Function(dynamic action) dispatchAction;
 
   ReduxWidgetButtonViewModel({
-    this.isActive,
-    this.dispatchAction,
+    required this.isActive,
+    required this.dispatchAction,
   });
 }

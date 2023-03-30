@@ -7,20 +7,21 @@ class ApplicationStateBloc implements BlocBase {
   ///
   /// Application State
   ///
-  ApplicationModel applicationState = ApplicationModel();
+  final ApplicationModel applicationState = ApplicationModel();
 
-  BehaviorSubject<ApplicationModel> _applicationStateController = BehaviorSubject<ApplicationModel>.seeded(ApplicationModel());
+  final BehaviorSubject<ApplicationModel> _applicationStateController =
+      BehaviorSubject<ApplicationModel>.seeded(ApplicationModel());
   Stream<ApplicationModel> get applicationModel => _applicationStateController;
 
   @override
   void dispose() {
-    _applicationStateController?.close();
+    _applicationStateController.close();
   }
 
   ///
   /// Used to save the authentication data
   ///
-  void logout(){
+  void logout() {
     applicationState.firstName = "";
     applicationState.lastName = "";
     applicationState.authenticationState = AuthenticationState.notAuthenticated;
@@ -30,7 +31,7 @@ class ApplicationStateBloc implements BlocBase {
   ///
   /// Used to save the authentication data
   ///
-  void login({String firstName, String lastName}){
+  void login({required String firstName, required String lastName}) {
     applicationState.firstName = firstName;
     applicationState.lastName = lastName;
     applicationState.authenticationState = AuthenticationState.authenticated;

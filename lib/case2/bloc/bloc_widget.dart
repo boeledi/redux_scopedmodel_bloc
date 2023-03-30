@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redux_scopedmodel_bloc/case2/bloc/stats_bloc.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
+import 'package:redux_scopedmodel_bloc/case2/bloc/stats_bloc.dart';
 
 class BlocWidget extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class BlocWidget extends StatefulWidget {
 }
 
 class _StatsWidgetState extends State<BlocWidget> {
-  StatsBloc _bloc;
+  late StatsBloc _bloc;
 
   @override
   void initState() {
@@ -42,10 +42,15 @@ class _StatsWidgetState extends State<BlocWidget> {
                     initialData: [],
                     builder: (BuildContext context,
                         AsyncSnapshot<List<double>> snapshot) {
-                      List<double> data = (snapshot.data == null || snapshot.data.length == 0) ? [1.0] : snapshot.data;
+                      List<double> data =
+                          (snapshot.data == null || snapshot.data!.length == 0)
+                              ? [1.0]
+                              : snapshot.data!;
 
                       return Padding(
-                        padding: const EdgeInsets.all(8.0,),
+                        padding: const EdgeInsets.all(
+                          8.0,
+                        ),
                         child: Sparkline(
                           data: data,
                         ),
@@ -61,9 +66,9 @@ class _StatsWidgetState extends State<BlocWidget> {
                       initialData: false,
                       builder:
                           (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                        bool isActive = snapshot.data;
+                        bool isActive = snapshot.data!;
 
-                        return RaisedButton(
+                        return ElevatedButton(
                           child: Text(isActive ? 'Stop' : 'Start'),
                           onPressed: () =>
                               isActive ? _bloc.stop() : _bloc.start(),

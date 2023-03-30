@@ -5,7 +5,7 @@ class ReduxPageViewModel {
   final void Function(dynamic action) dispatchAction;
 
   ReduxPageViewModel({
-    this.state,
-    this.dispatchAction,
+    required this.state,
+    required this.dispatchAction,
   });
 }

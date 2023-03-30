@@ -5,8 +5,8 @@ class StartStopPanelAction {
   final bool isStart;
 
   StartStopPanelAction({
-    this.panelIndex,
-    this.isStart,
+    required this.panelIndex,
+    required this.isStart,
   });
 }
 
@@ -15,7 +15,7 @@ class AddStatsAction {
   final int panelIndex;
 
   AddStatsAction({
-    this.panelIndex,
-    this.value,
+    required this.panelIndex,
+    required this.value,
   });
 }
